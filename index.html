@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="todo">
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <script>
+      document.write('<base href="' + document.location + '" />');
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script
+      data-require="angular.js@1.5.x"
+      src="https://code.angularjs.org/1.5.8/angular.js"
+      data-semver="1.5.8"
+    ></script>
+    <script src="app.js"></script>
+    <script src="controllers.js"></script>
+    <script src="directives.js"></script>
+  </head>
+
+  <body ng-app="todo" ng-controller="TodoCtrl">
+    <div class="container">
+      <!-- <h1>Todo List</h1> -->
+      <todo-title></todo-title>
+
+      <todo-form></todo-form>
+
+      <!-- <pre>{{todoForm | json}}</pre> -->
+
+      <ul class="list-unstyled">
+        <li ng-repeat="todo in todos | filter:statusFilter">
+          <todo-item></todo-item>
+        </li>
+      </ul>
+
+      <todo-filters></todo-filters>
+    </div>
+
+  </body>
+</html>
