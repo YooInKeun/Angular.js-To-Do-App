@@ -1,5 +1,7 @@
 angular.module('todo').controller('TodoCtrl', function($scope) {
 
+  axios.defaults.baseURL = 'http://localhost:8000/api/';
+
   $scope.todos = [
     {
       id: 1,
@@ -29,15 +31,22 @@ angular.module('todo').controller('TodoCtrl', function($scope) {
   }
 
   $scope.add = function (newTodoTitle, newTodoContent) {
-    var newTodo = {
+    var postData = {
       title: newTodoTitle,
       content: newTodoContent
     };
 
-    $scope.todos.push(newTodo);
-    $scope.newTodoTitle = "";
-    $scope.newTodoContent = "";
-  }
+    axios.post('notes/', postData)
+      .then((res) => {
+          $scope.todos.push(postData);
+          $scope.newTodoTitle = "";
+          $scope.newTodoContent = "";
+          alert("생성 완료", res);
+      })
+      .catch(function (err) {
+          console.log("CREATE FAIL", err);
+      });
+  };
 
   $scope.update = function (todo, updatedTodoTitle, updatedTodoContent) {
     var idx = $scope.todos.findIndex(function (item) {
