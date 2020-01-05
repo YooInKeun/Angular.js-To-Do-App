@@ -5,7 +5,6 @@ angular.module('todo').directive('todoTitle', function () {
 });
 
 angular.module('todo').directive('todoItem', function () {
-  alert("??");
   return {
     templateUrl: 'todoItem.tpl.html'
   }
