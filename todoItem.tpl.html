@@ -1,10 +1,15 @@
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <div class="input-group-text">
-      <input type="checkbox" ng-model="todo.completed" ng-click="update()">
-    </div>
+<div class="created-todo-list">
+  <div class="form-group-top">
+    <h3>{{ $index + 1 }}번째 ToDo</h3>
+    <label for="todoTitle-{{ $index }}">제목</label>
+    <input type="text" class="form-control" id="todoTitle-{{ $index }}" ng-model="todo.title" ng-blur="update()">
   </div>
-  <input type="text" class="form-control" aria-label="Text input with checkbox" ng-model="todo.title" ng-blur="update()">
+
+  <div class="form-group">
+    <label for="todoContent-{{ $index }}">내용</label>
+    <textarea class="form-control" id="todoContent-{{ $index }}" ng-model="todo.content" ng-blur="update()"></textarea>
+  </div>
+
   <span class="input-group-btn">
     <button class="btn btn-danger" type="button" ng-click="remove(todo)">삭제</button>
   </span>

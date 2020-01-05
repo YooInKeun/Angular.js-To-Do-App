@@ -21,12 +21,8 @@
 
   <body ng-app="todo" ng-controller="TodoCtrl">
     <div class="container">
-      <!-- <h1>Todo List</h1> -->
-      <todo-title></todo-title>
-
+      <todo-list></todo-list>
       <todo-form></todo-form>
-
-      <!-- <pre>{{todoForm | json}}</pre> -->
 
       <ul class="list-unstyled">
         <li ng-repeat="todo in todos | filter:statusFilter">
@@ -35,6 +31,7 @@
       </ul>
 
       <todo-filters></todo-filters>
+
     </div>
   </body>
 </html>
