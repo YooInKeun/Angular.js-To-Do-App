@@ -1,9 +1,3 @@
-// angular.module('todo').directive('todoCreate', function () {
-//   return {
-//     template: '<h1>Todo Create</h1>'
-//   };
-// });
-
 angular.module('todo').directive('todoList', function () {
   return {
     template: '<h1>Todo List</h1>'
