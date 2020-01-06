@@ -1,59 +1,18 @@
-angular.module('todo').controller('TodoCtrl', function($scope) {
-
-  axios.defaults.baseURL = 'http://localhost:8000/api/';
-
-  $scope.todos = [
-    {
-      id: 1,
-      title: 'Spring Boot Rest API',
-      content: '백엔드 간단한 CRUD 기능',
-    },
-    {
-      id: 4,
-      title: 'Angular.js 프론트',
-      content: '프론트 간단한 CRUD 기능',
-    },
-    {
-      id: 3,
-      title: '운동하기',
-      content: '유산소 운동',
-    }
-  ];
-
-  $scope.remove = function(todo) {
-    var idx = $scope.todos.findIndex(function (item) {
-      return item.id === todo.id;
-    })
-
-    if (idx > -1) {
-      $scope.todos.splice(idx, 1)
-    }
-  }
+angular.module('todo').controller('TodoCtrl', function($scope, todoStorage) {
 
   $scope.add = function (newTodoTitle, newTodoContent) {
-    var postData = {
-      title: newTodoTitle,
-      content: newTodoContent
-    };
-
-    axios.post('notes/', postData)
-      .then((res) => {
-          $scope.todos.push(postData);
-          $scope.newTodoTitle = "";
-          $scope.newTodoContent = "";
-          alert("생성 완료", res);
-      })
-      .catch(function (err) {
-          console.log("CREATE FAIL", err);
-      });
+    todoStorage.add(newTodoTitle, newTodoContent);
+    $scope.newTodoTitle = "";
+    $scope.newTodoContent = "";
   };
+
+  $scope.todos = todoStorage.get();
 
   $scope.update = function (todo, updatedTodoTitle, updatedTodoContent) {
-    var idx = $scope.todos.findIndex(function (item) {
-      return item.id === todo.id;
-    });
-
-    $scope.todos[idx].title = updatedTodoTitle;
-    $scope.todos[idx].content = updatedTodoContent;
+    todoStorage.update(todo, updatedTodoTitle, updatedTodoContent)
   };
+
+  $scope.remove = function(todo) {
+    todoStorage.remove(todo);
+  }
 });
