@@ -1,0 +1,19 @@
+<form class="todoForm" name="todoForm" ng-submit="add(newTodoTitle, newTodoContent)">
+  <div class="form-group">
+    <label for="todoCreateTitle">제목</label>
+    <input type="text" class="form-control" id="todoCreateTitle" ng-model="newTodoTitle" placeholder="제목을 입력하세요" minlength="3">
+  </div>
+
+  <div class="form-group">
+    <label for="todoCreateContent">내용</label>
+    <textarea class="form-control" id="todoCreateContent" ng-model="newTodoContent" placeholder="내용을 입력하세요" rows="3"></textarea>
+  </div>
+
+  <span class="input-group-btn">
+    <button class="btn btn-primary" type="submit">추가</button>
+  </span>
+
+  <div ng-show="todoForm.$dirty && todoForm.$invalid">
+    <div class="alert alert-warning" role="alert">제목은 3글자 이상 입력하세요.</div>
+  </div>
+</form>
